@@ -1,5 +1,5 @@
-alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 3399
-(msg:"ALERT";content:"login";content:"Initial";flowbit:set,bot;flowbit:noalert;sid:1000001;)
+alert tcp any any -> any 3399
+(pcre:"/login|Initial/";flowbits:set,bot;flowbits:noalert;sid:1000001;)
 
-alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 3399
-(msg:"bot founded";pcre:"/[0-9]+.[0-9]+.[0-9]+.[0-9]+:[0-9]+/";flowbit:isset,bot;sid:1000001;)
+alert tcp any any -> any 3399
+(msg:"bot founded";pcre:"/[0-9]+.[0-9]+.[0-9]+.[0-9]+:[0-9]+/";flowbit:isset,bot;sid:1000002;)
